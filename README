@@ -1,0 +1,40 @@
+To use simply
+
+require "WildCard"
+include WildCard
+
+
+This does the heavy lifting for fancy method_missing calls so you write things like this
+
+def say_X_Doug(phrase)
+ "Doug says #{phrase}"
+end
+
+say_hello_Doug => "Doug says hello"
+say_bye_Doug => "Doug says bye"
+
+you can have multiple wildcards
+
+def the_X_stole_my_X(animal,possession)
+  "The #{animal} stole my fracking #{possession}"
+end
+
+the_dog_stole_my_laptop => "The dog stole my fracking laptop"
+
+you can have regular params as well
+
+def math_X_plus_X_equals(a,b,sum)
+  a.to_i + b.to_i == sum
+end
+
+math_2_plus_3_equals(5) => true
+math_2_plus_2_equals(5) => false
+
+if you do anything like this
+def i_want_X_and_X
+  "you are spoiled"
+end
+dont do this
+i_want_and_and_and => "bad things"
+
+Have fun and please only use this in logical places
