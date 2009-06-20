@@ -20,6 +20,7 @@ module WildCard
     super
   end
   def self.wildcard methods, method_id, *arguments
+    #puts methods.inspect
     letter="[A-Za-z0-9_]+"
     wildcards=methods.map{|x| x.to_s}.select{|x| x.index('X')}.map{|x| {:name=>x,:parts=>x.split('X')}}
     my_method=wildcards.detect{|x| 
@@ -27,7 +28,7 @@ module WildCard
     }
     if my_method then 
       output=WildCard.remove_strings(method_id.to_s,my_method[:parts]) + arguments
-      return [my_method[:name], output]
+      return [my_method[:name].to_sym, output]
     else
       return nil
     end
