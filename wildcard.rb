@@ -21,7 +21,7 @@ module WildCard
   end
   def self.wildcard methods, method_id, *arguments
     letter="[A-Za-z0-9_]+"
-    wildcards=methods.select{|x| x.index('X')}.map{|x| {:name=>x,:parts=>x.split('X')}}
+    wildcards=methods.map{|x| x.to_s}.select{|x| x.index('X')}.map{|x| {:name=>x,:parts=>x.split('X')}}
     my_method=wildcards.detect{|x| 
       method_id.to_s.match(Regexp.new("^#{x[:parts].join(letter)}#{if x[:name][-1..-1]=='X' then letter end}$"))
     }
